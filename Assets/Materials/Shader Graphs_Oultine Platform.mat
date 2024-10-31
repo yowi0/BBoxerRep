@@ -67,10 +67,10 @@ Material:
     - _normal_intensity: 1
     - _start_height: -20
     m_Colors:
-    - _Color: {r: 0.15677343, g: 0.012103926, b: 0.3773585, a: 1}
+    - _Color: {r: 0.25755933, g: 0, b: 1.4907221, a: 1}
     - _Main_Color: {r: 0, g: 0.007843138, b: 0.3921569, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _Outline_Color: {r: 0.315427, g: 0.16609114, b: 0.4056604, a: 1}
+    - _Outline_Color: {r: 0, g: 0, b: 1, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _gradient_color: {r: 0.2509804, g: 0, b: 0.3372549, a: 0}
   m_BuildTextureStacks: []
