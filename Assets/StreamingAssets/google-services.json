@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "739227760230",
+    "firebase_url": "https://swordshoot-86235-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "swordshoot-86235",
+    "storage_bucket": "swordshoot-86235.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739227760230:android:325c3455053a5c578c5fa7",
+        "android_client_info": {
+          "package_name": "com.Joviat.SwordAndGun"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr8RUR0-lNyaTvVX-EpYySQZqGW4PAufU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
