@@ -61,12 +61,36 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cf14f2b797fb83040b74dfbc2866b903,
         type: 3}
       propertyPath: m_Name
-      value: untitled
+      value: cubo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: cf14f2b797fb83040b74dfbc2866b903, type: 3}
     - {fileID: -8700617353114198275, guid: cf14f2b797fb83040b74dfbc2866b903, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cf14f2b797fb83040b74dfbc2866b903,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7671871495958351986}
   m_SourcePrefab: {fileID: 100100000, guid: cf14f2b797fb83040b74dfbc2866b903, type: 3}
+--- !u!1 &6803264995967683469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cf14f2b797fb83040b74dfbc2866b903,
+    type: 3}
+  m_PrefabInstance: {fileID: 5956965596549478108}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7671871495958351986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803264995967683469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd43e73c45966194ca8d4ebb56ebf042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchEffect: {fileID: 0}
+  moveSpeed: 0

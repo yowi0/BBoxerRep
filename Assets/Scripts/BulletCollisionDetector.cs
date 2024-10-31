@@ -10,7 +10,7 @@ public class BulletCollisionDetector : MonoBehaviour
 
     public GameObject AddscorePopupPrefab; // Prefab del Canvas con el texto "+5"
     public GameObject RemovescorePopupPrefab;
-    private HealthBar healthBar; // Cambiar a privado
+    //private HealthBar healthBar; // Cambiar a privado
 
     private bool collisionHandled = false; // Añadir esta línea
 
@@ -20,7 +20,7 @@ public class BulletCollisionDetector : MonoBehaviour
         reference = FirebaseDatabase.DefaultInstance.RootReference;
 
         // Find the HealthBar component in the scene
-        healthBar = FindObjectOfType<HealthBar>();
+        //healthBar = FindObjectOfType<HealthBar>();
 
         // Verificar que el prefab esté asignado
         if (AddscorePopupPrefab == null)
@@ -83,10 +83,10 @@ public class BulletCollisionDetector : MonoBehaviour
 
             TMP_Text popupText = popup.GetComponentInChildren<TMP_Text>();
             popupText.text = "-5";
-            if (healthBar != null)
-            {
-                healthBar.TakeDamage();
-            }
+            //if (healthBar != null)
+            //{
+              //  healthBar.TakeDamage();
+           // }
             Destroy(popup, 1.0f); // Destruir el popup después de 1 segundo
         }
 
