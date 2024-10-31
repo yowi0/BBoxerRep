@@ -7,7 +7,6 @@ using TMPro;
 public class BulletCollisionDetector : MonoBehaviour
 {
     private DatabaseReference reference;
-    private DisplayPlayerData displayPlayerData;
 
     public GameObject AddscorePopupPrefab; // Prefab del Canvas con el texto "+5"
     public GameObject RemovescorePopupPrefab;
@@ -19,9 +18,6 @@ public class BulletCollisionDetector : MonoBehaviour
     {
         // Initialize the Firebase database reference
         reference = FirebaseDatabase.DefaultInstance.RootReference;
-
-        // Obtain the DisplayPlayerData component
-        displayPlayerData = FindObjectOfType<DisplayPlayerData>();
 
         // Find the HealthBar component in the scene
         healthBar = FindObjectOfType<HealthBar>();
@@ -184,13 +180,7 @@ public class BulletCollisionDetector : MonoBehaviour
                                 reference.Child("Players").Child(playerKey).Child("HighScore").SetValueAsync(PlayerInfo.HighScore);
                             }
 
-                            // Call the ActualizarTexto method on DisplayPlayerData with the new score and high score values
-                            UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                            {
-                                displayPlayerData.ActualizarTexto(PlayerInfo.PlayerName, PlayerInfo.Score, PlayerInfo.HighScore);
-                            });
-                        }
-                    });
+                    }});
 
                     break;
                 }

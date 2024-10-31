@@ -93,16 +93,6 @@ public class PauseMenuScript : MonoBehaviour
                             // Reset the PlayerInfo score
                             PlayerInfo.ResetScore();
 
-                            // Update the display with the reset score
-                            UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                            {
-                                FindObjectOfType<DisplayPlayerData>().ActualizarTexto(PlayerInfo.PlayerName, PlayerInfo.Score, PlayerInfo.HighScore);
-
-                                // Restart the scene
-                                Time.timeScale = 1f;
-                                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                                Debug.Log("Ale");
-                            });
                         }
                     });
 

@@ -1,140 +1,63 @@
 using System.Collections;
-using System.IO;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class BeatSaberBlockSpawner : MonoBehaviour
+public class BlockController : MonoBehaviour
 {
-    public GameObject redBlockPrefab;
-    public GameObject blueBlockPrefab;
-    public GameObject bombBlockPrefab;
-    public Transform spawnPoint;
+    public GameObject touchEffect; // Efecte visual quan es toca el cub
+    private bool hasBeenTouched = false; // Controla si el cub ha estat tocat
+    public static int score = 0; // Variable per la puntuació global
 
-    public float horizontalSpacing = 2.0f;
-    public float verticalSpacing = 2.0f;
-
-    public string beatMapFilePath;
-
-    public float bpm = 105;
-
-    public float noteJumpMovementSpeed = 10f;
-    public float noteJumpStartBeatOffset = 1f;
+    private Vector3 moveDirection = Vector3.back;
+    public float moveSpeed;
 
     private void Start()
     {
-        StartCoroutine(Initialize());
+        StartCoroutine(FailureCheck()); // Comprova si el cub no ha estat tocat dins del temps límit
     }
 
-    private IEnumerator Initialize()
+    private IEnumerator FailureCheck()
     {
-        string path = Path.Combine(Application.streamingAssetsPath, beatMapFilePath);
-        yield return StartCoroutine(ReadFileFromStreamingAssets(path, (jsonString) =>
-        {
-            if (!string.IsNullOrEmpty(jsonString))
-            {
-                BeatSaberMapData mapData = JsonUtility.FromJson<BeatSaberMapData>(jsonString);
-                StartCoroutine(SpawnBlocks(mapData));
-            }
-        }));
-    }
+        yield return new WaitForSeconds(1.8f);
 
-    private IEnumerator ReadFileFromStreamingAssets(string filePath, System.Action<string> onComplete)
-    {
-        if (string.IsNullOrEmpty(filePath))
+        if (gameObject.activeSelf && !hasBeenTouched)
         {
-            Debug.LogError("File path is empty or null.");
-            onComplete?.Invoke(null);
-            yield break;
-        }
-
-        using (UnityWebRequest www = UnityWebRequest.Get(filePath))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError("Error reading file: " + www.error);
-                onComplete?.Invoke(null);
-            }
-            else
-            {
-                onComplete?.Invoke(www.downloadHandler.text);
-            }
+            Destroy(gameObject); // Destrueix el cub si no ha estat tocat
         }
     }
 
-    private IEnumerator SpawnBlocks(BeatSaberMapData mapData)
+    private void Update()
     {
-        float startTime = Time.time;
+        // Mou el cub cap a l'objectiu
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
-        foreach (BeatSaberBlockData blockData in mapData._notes)
+        // Destrueix el cub si surt de la zona de joc
+        if (transform.position.magnitude > 50)
         {
-            float targetTime = (blockData._time / bpm) * 60;
+            Destroy(gameObject);
+        }
+    }
 
+    private void Awake()
+    {
+        Destroy(gameObject, 5); // Elimina el cub després de 5 segons per evitar que ocupi memòria innecessària
+    }
 
-            float timeToWait = targetTime - (Time.time - startTime)+ noteJumpStartBeatOffset;
+    // Funció per quan es toca el cub
+    public void MarkAsTouched()
+    {
+        if (!hasBeenTouched)
+        {
+            hasBeenTouched = true;
+            score += 10; // Incrementa la puntuació
 
-            if (timeToWait > 0)
+            // Mostra l'efecte visual al tocar
+            if (touchEffect != null)
             {
-                yield return new WaitForSeconds(timeToWait);
+                Instantiate(touchEffect, transform.position, Quaternion.identity);
             }
 
-            SpawnBlock(blockData);
+            // Destrueix el cub després de tocar-lo
+            Destroy(gameObject);
         }
     }
-
-    private void SpawnBlock(BeatSaberBlockData blockData)
-    {
-        //Debug.Log("SPAWN " + blockData._time + "-" + blockData._cutDirection);
-
-        GameObject blockPrefab = null;
-
-        switch (blockData._type)
-        {
-            case (int)BeatSaberBlockType.Red:
-                blockPrefab = redBlockPrefab;
-                break;
-            case (int)BeatSaberBlockType.Blue:
-                blockPrefab = blueBlockPrefab;
-                break;
-            case (int)BeatSaberBlockType.Bomb:
-                blockPrefab = bombBlockPrefab;
-                break;
-            default:
-                Debug.LogError("Unknown block type: " + blockData._type);
-                return;
-        }
-
-        Vector3 spawnPosition = spawnPoint.position;
-        spawnPosition.x += blockData._lineIndex * horizontalSpacing;
-        spawnPosition.y += blockData._lineLayer * verticalSpacing;
-
-        GameObject blockInstance = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
-
-        BlockController blockController = blockInstance.GetComponent<BlockController>();
-        blockController.Initialize(blockData);
-    }
-
-    [System.Serializable]
-    public class BeatSaberMapData
-    {
-        public BeatSaberBlockData[] _notes;
-    }
-
-    [System.Serializable]
-    public class BeatSaberBlockData
-    {
-        public float _time;
-        public int _lineIndex;
-        public int _lineLayer;
-        public int _type;
-        public int _cutDirection;
-    }
-
-
-    public enum BeatSaberBlockType
-    {
-        Red, Blue, Bomb
-    };
 }
-
