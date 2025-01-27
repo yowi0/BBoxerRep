@@ -3,7 +3,7 @@ using UnityEngine;
 public class MusicEndChecker : MonoBehaviour
 {
     public AudioSource music;
-    public PauseMenuScript pauseMenuScript;
+    /* public PauseMenuScript pauseMenuScript; */
     public float delay = 1f; // Same delay as in PlayMusicWithDelay
 
     private bool musicStarted = false;
@@ -24,7 +24,7 @@ public class MusicEndChecker : MonoBehaviour
         if (musicStarted && !music.isPlaying)
         {
             // Call TriggerGameOver on the PauseMenuScript
-            pauseMenuScript.TriggerGameOver();
+            /* pauseMenuScript.TriggerGameOver(); */
             // Disable this script to prevent multiple calls
             enabled = false;
         }

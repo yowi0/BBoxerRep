@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'Hack';
-    src: local('Hack Bold'), local('Hack-Bold'),
-        url('Hack-Bold.woff2') format('woff2'),
-        url('Hack-Bold.woff') format('woff'),
-        url('Hack-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-  }
