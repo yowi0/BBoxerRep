@@ -428,6 +428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 181170791}
+  - component: {fileID: 181170792}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -450,6 +451,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &181170792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181170790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67979d15aec801248b5357d007a4aca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 2051941712}
+  cubeManager: {fileID: 1190312523}
+  musicDropDown: {fileID: 612844542}
+  gameMusic: {fileID: 65361718}
+  audioClips:
+  - {fileID: 8300000, guid: 8717932018e134b4f9b9b381cc22f861, type: 3}
+  - {fileID: 8300000, guid: 4a5d64b28f122814b91a3edae9d2054a, type: 3}
+  - {fileID: 8300000, guid: 478235877e060c24d8400ea13f4cd5a2, type: 3}
+  - {fileID: 8300000, guid: 6d8621d08a9cc4446bb135a758f98549, type: 3}
 --- !u!1 &266602207
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +554,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 266602210}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 181170792}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &266602210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10932,11 +10966,13 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: XXX Tentacion
+    - m_Text: Atomic Otro Way - Te de Campana
       m_Image: {fileID: 0}
-    - m_Text: Manolo
+    - m_Text: "Lary Over x Farruko x El Alfa x L\xEDrico En La Casa - Subete Remix"
       m_Image: {fileID: 0}
-    - m_Text: Francisco
+    - m_Text: Lirico En La Casa - El Motorcito
+      m_Image: {fileID: 0}
+    - m_Text: Bad Bunny - Me Mata
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12412,7 +12448,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: XXX Tentacion
+  m_Text: Atomic Otro Way - Te de Campana
 --- !u!222 &1624931520
 CanvasRenderer:
   m_ObjectHideFlags: 0
